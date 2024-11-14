@@ -1,0 +1,25 @@
+function [y,exectime]=mysolveL(L,c)
+tic;
+clc
+H = [2 0 0; 3 1 0; 4 2 5];
+j= [3 6.5 10];
+t = size (H);
+y = zeros(1,t(1,1));
+
+for i= 1:size(H)
+    s=0;
+    count=1
+    if i==1
+       y(1,i) = j(1,i)/H(i,i)
+    else
+       while count < i
+           s=s+H(i,count)*y(1,count);
+           count=count+1;
+       end
+       y(1,i) = (j(1,i)-s)/H(i,i)
+
+    end
+
+end
+exectime=toc;
+end
